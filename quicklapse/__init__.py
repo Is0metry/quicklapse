@@ -1,6 +1,5 @@
 import os
-from flask import Flask,jsonify
-from flask_mysqldb import MySQL
+from flask import Flask
 
 
 def create_app(test_config=None):
@@ -8,12 +7,9 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        MYSQL_HOST='localhost',
-        MYSQL_USER='root',
-        MYSQL_PASSWORD='password1',
-        MYSQL_DB='quicklapse'
+        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite')
     )
-    
+
     if test_config is None: 
         #load instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
@@ -27,4 +23,5 @@ def create_app(test_config=None):
     @app.route('/')
     def hello():
         return "hello, world! may I take your order?"
+
     return app
