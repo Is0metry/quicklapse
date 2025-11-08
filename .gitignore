@@ -1,4 +1,10 @@
 flaskenv/*
 .vscode/*
-__pycache__/*
+**/__pycache__/*
 launch.json
+.venv/*
+uv.lock
+instance/*
+*.egg-info
+build/*
+
